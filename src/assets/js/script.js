@@ -2,6 +2,7 @@
 const nomeHeroiInput = document.getElementById('nomeHeroi');
 const xpHeroiInput = document.getElementById('xpHeroi');
 const resultado = document.getElementById('resultado');
+const somClick = new Audio('src/assets/sounds/click.mp3'); // Carrega o som
 
 // Classificação de nível com base no XP
 const classificarNivel = xp => 
@@ -17,8 +18,14 @@ const classificarNivel = xp =>
 const classificarHeroi = () => {
     const nome = nomeHeroiInput.value;
     const xp = Number(xpHeroiInput.value);
+
+    // Reproduz o som
+    somClick.play();
+
     resultado.textContent = `O Herói de nome ${nome} está no nível de ${classificarNivel(xp)}`;
 };
 
 // Adiciona o evento de clique ao botão
 document.getElementById('classificarBtn').addEventListener('click', classificarHeroi);
+
+
