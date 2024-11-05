@@ -2,52 +2,60 @@
 const nomeHeroiInput = document.getElementById('nomeHeroi');
 const xpHeroiInput = document.getElementById('xpHeroi');
 const resultado = document.getElementById('resultado');
-const imgPersonagem = document.getElementById('imagemHeroi'); // Seleciona a imagem do herói
 const somClick = new Audio('src/assets/sounds/click.mp3'); // Carrega o som
+const videoContainer = document.getElementById('videoContainer');
 
-// Classificação de nível com base no XP
-const classificarNivel = xp => 
-    xp < 1000 ? 'Ferro' :
-    xp <= 2000 ? 'Bronze' :
-    xp <= 5000 ? 'Prata' :
-    xp <= 7000 ? 'Ouro' :
-    xp <= 8000 ? 'Platina' :
-    xp <= 9000 ? 'Ascendente' :
-    xp <= 10000 ? 'Imortal' : 'Radiante';
-
-// Função para atualizar a imagem do herói com base no nível
-const atualizarImagemHeroi = nivel => {
-    imgPersonagem.src = `src/assets/images/nivel${nivel}.jpg`; // Atualiza a imagem
+// Classificação de nível com base no XP e troca de imagem de fundo
+const classificarNivel = (xp) => {
+    let nivel;
+    if (xp < 1000) {
+        nivel = 'Ferro';
+        document.body.style.backgroundImage = "url('src/assets/images/nivel1.jpg')";
+    } else if (xp <= 2000) {
+        nivel = 'Bronze';
+        document.body.style.backgroundImage = "url('src/assets/images/nivel2.jpg')";
+    } else if (xp <= 5000) {
+        nivel = 'Prata';
+        document.body.style.backgroundImage = "url('src/assets/images/nivel3.jpg')";
+    } else if (xp <= 7000) {
+        nivel = 'Ouro';
+        document.body.style.backgroundImage = "url('src/assets/images/nivel4.jpg')";
+    } else if (xp <= 8000) {
+        nivel = 'Platina';
+        document.body.style.backgroundImage = "url('src/assets/images/nivel5.jpg')";
+    } else if (xp <= 9000) {
+        nivel = 'Ascendente';
+        document.body.style.backgroundImage = "url('src/assets/images/nivel6.jpg')";
+    } else if (xp <= 10000) {
+        nivel = 'Imortal';
+        document.body.style.backgroundImage = "url('src/assets/images/nivel7.jpg')";
+    } else {
+        nivel = 'Radiante';
+        document.body.style.backgroundImage = "url('src/assets/images/nivel8.jpg')";
+    }
+    return nivel;
 };
 
-// Função para classificar o herói e exibir o resultado
+// Função para classificar o herói, exibir o resultado e ocultar o vídeo
 const classificarHeroi = () => {
     const nome = nomeHeroiInput.value;
     const xp = Number(xpHeroiInput.value);
 
-    // Classifica o nível do herói
-    const nivel = classificarNivel(xp);
-
-    // Reproduz o som
+    // Reproduz o som e oculta o vídeo
     somClick.play();
+    videoContainer.classList.add('hidden');
 
-    // Exibe a mensagem do resultado
-    resultado.textContent = `O Herói de nome ${nome} está no nível de ${nivel}`;
+    // Remove a classe de fundo preto quando o vídeo é ocultado
+    document.body.classList.remove('video-page');
 
-    // Atualiza a imagem do herói com base no XP
-    let imgNivel;
-    if (xp < 1000) imgNivel = 1;
-    else if (xp <= 2000) imgNivel = 2;
-    else if (xp <= 5000) imgNivel = 3;
-    else if (xp <= 7000) imgNivel = 4;
-    else if (xp <= 8000) imgNivel = 5;
-    else if (xp <= 9000) imgNivel = 6;
-    else if (xp <= 10000) imgNivel = 7;
-    else imgNivel = 8;
-
-    // Atualiza a imagem do herói
-    atualizarImagemHeroi(imgNivel);
+    // Exibe o resultado e troca a imagem de fundo
+    resultado.textContent = `O Herói de nome ${nome} está no nível de ${classificarNivel(xp)}`;
 };
+
+// Adiciona a classe de fundo preto ao body quando a página é carregada
+document.addEventListener('DOMContentLoaded', () => {
+    document.body.classList.add('video-page');
+});
 
 // Adiciona o evento de clique ao botão
 document.getElementById('classificarBtn').addEventListener('click', classificarHeroi);

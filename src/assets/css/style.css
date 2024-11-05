@@ -1,3 +1,8 @@
+/* Quando o vídeo estiver visível */
+body.video-page {
+    background-color: #000000; /* Fundo preto */
+}
+
 /* Reset básico */
 * {
     margin: 0;
@@ -6,35 +11,50 @@
     font-family: Arial, sans-serif;
 }
 
-/* Estilos principais */
+/* Layout da página */
 body {
     display: flex;
     flex-direction: column;
-    align-items: center;
-    justify-content: center;
     min-height: 100vh;
-    background-color: #f4f4f9;
+    background-color: #080808;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    transition: background-image 0.5s ease-in-out;
 }
 
 main {
-    width: 100%;
-    max-width: 500px;
+    display: flex;
+    justify-content: flex-start; /* Ajuste para posicionar à esquerda */
+    align-items: center;
     padding: 20px;
-    background-color: #fff;
+    height: 100vh; /* Faz o main ocupar a altura total da tela */
+    gap: 20px;
+}
+
+/* Quadro principal */
+.form-container {
+    width: 40%; /* Reduz a largura do quadro */
+    max-width: 350px;
+    padding: 20px;
+    background: linear-gradient(135deg, #1f4c8b, #4c81b3);
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     border-radius: 8px;
     text-align: center;
+    z-index: 1; /* Coloca o quadro acima das imagens de fundo */
+    position: relative;
+    margin-left: 20px; /* Ajuste de margem para posicionamento à esquerda */
 }
 
-h1, h2 {
-    color: #333;
+h2 {
+    color: #d6d85f;
 }
 
 label {
     display: block;
     margin: 15px 0 5px;
     font-size: 1.1em;
-    color: #333;
+    color: #91cf2d;
 }
 
 input {
@@ -50,7 +70,7 @@ button {
     padding: 10px 20px;
     font-size: 1.1em;
     color: #fff;
-    background-color: #007bff;
+    background-color: #0f79eb;
     border: none;
     border-radius: 5px;
     cursor: pointer;
@@ -64,27 +84,52 @@ button:hover {
 #resultado {
     margin-top: 20px;
     font-weight: bold;
-    font-size: 1.2em;
-    color: #555;
+    font-size: 1.4em;
+    color: #dceb0ed3;
+}
+
+/* Estilos para o vídeo de fundo */
+.video-container {
+    width: 80%; /* O vídeo ocupa metade da largura */
+    height: 104%; /* E ocupa a altura total da tela */
+    max-width: none;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.video-container iframe {
+    width: 100%;
+    height: 100%;
+    aspect-ratio: 16/9;
+}
+
+/* Esconde o contêiner do vídeo quando a classe `hidden` é adicionada */
+.video-container.hidden {
+    display: none;
 }
 
 /* Responsividade */
-@media (max-width: 600px) {
+@media (max-width: 800px) {
     main {
-        padding: 15px;
+        flex-direction: column;
+        align-items: center;
     }
-    
-    h1 {
-        font-size: 1.5em;
+
+    .form-container, .video-container {
+        width: 90%; /* Ajusta a largura para telas pequenas */
     }
-    
-    button {
-        width: 100%;
+
+    .video-container iframe {
+        height: auto;
     }
 }
 
-/* Destaque de foco para navegação com teclado */
-input:focus, button:focus {
-    outline: 2px solid #007bff;
-    outline-offset: 2px;
+/* Estilo do footer */
+footer {
+    margin-top: auto;
+    padding: 10px 0;
+    background-color: rgba(121, 119, 224, 0.8);
+    border-top: 1px solid #ddd;
+    text-align: center;
 }
