@@ -30,7 +30,7 @@ Este é um projeto interativo para classificar o nível de um herói com base em
 2. Abra o arquivo `index.html` em seu navegador.
 
 ### Link para Demonstração
-[Acesse o projeto online aqui!](https://seulink.vercel.app)
+[Acesse o projeto online aqui!](https://classificador-heroi.vercel.app/)
 
 ---
 

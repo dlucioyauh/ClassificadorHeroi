@@ -18,19 +18,24 @@
             <form>
                 <label for="nomeHeroi">Nome do Herói:</label>
                 <input type="text" id="nomeHeroi" placeholder="Digite o nome do herói" aria-required="true">
-                
+
                 <label for="xpHeroi">Experiência (XP):</label>
                 <input type="number" id="xpHeroi" placeholder="Digite o XP do herói" aria-required="true">
-                
+
                 <button type="button" id="classificarBtn">Classificar</button><br><br>
             </form>
 
             <output aria-live="polite" id="resultado"></output>
+            <!-- Imagem do herói -->
+            <figure>
+                <img id="imagemHeroi" src="src/assets/images/nivel1.jpg" alt="Imagem do herói no nível atual" />
+                <figcaption>Imagem do herói</figcaption>
+            </figure>
         </section>
     </main>
 
     <footer>
-        <p>Desenvolviddo por Douglas Lucio - IONKOD</p>
+        <p>Desenvolvido por Douglas Lucio - IONKOD</p>
     </footer>
 
     <script src="src/assets/js/script.js"></script>
